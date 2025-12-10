@@ -1,14 +1,13 @@
 local function CreateChatFrame(name, messageGroups, channels)
     -- Check if window already exists
-    for i = 1,  NUM_CHAT_WINDOWS do 
+    for i = 1,  NUM_CHAT_WINDOWS do
         local windowName = GetChatWindowInfo(i)
         if windowName == name then
-            -- print('|cFF00FF00LoginScripts:|r Found existing [' .. name .. '] window') debug
+            PrintError('Found existing [' .. name .. '] window already')
             return
         end
     end
 
-    print('|cFF00FF00LoginScripts:|r Creating [' .. name .. '] window')
     local frame = FCF_OpenNewWindow(name)
 	ChatFrame_RemoveAllMessageGroups(frame)
 	ChatFrame_RemoveAllChannels(frame)
@@ -21,7 +20,6 @@ local function CreateChatFrame(name, messageGroups, channels)
 
     if channels then
         for _, t in ipairs(channels) do
-            -- print('|cFF00FF00LoginScripts:|r Adding channel '.. t) debug
             frame:AddChannel(t)
         end
     end
@@ -32,6 +30,7 @@ end
 local function ClearGeneral(messageGroups, channels)
     local frame = DEFAULT_CHAT_FRAME
     if not frame then
+        PrintError('Defaul chat frame not found')
         return
     end
 
@@ -55,7 +54,7 @@ function SetupChatWindows()
     -- Reset chat configurations
     FCF_ResetChatWindows()
 
-    print('|cFF00FF00LoginScripts:|r Setting up chat windows...')
+    PrintSuccess('Chat setup started...')
 
     local messageGroups = {
         'WHISPER',
@@ -87,7 +86,7 @@ function SetupChatWindows()
 
     ClearGeneral(messageGroups, channels)
 
-    print('|cFF00FF00LoginScripts:|r Chat windows done')
+    PrintSuccess('...chat setup succeeded')
 
     -- Chat setup done for character
     LoginScriptsDB.chatSetup = true
