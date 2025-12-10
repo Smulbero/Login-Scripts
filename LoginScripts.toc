@@ -1,0 +1,15 @@
+## Interface: 110205
+## Title: Login Scripts
+## Notes: My personal default settings
+## Author: Smulbero
+## SavedVariables: 
+## SavedVariablesPerCharacter: LoginScriptsDB
+## Version: 1.0.0
+
+init.lua
+
+./modules/cvar.lua
+./modules/chat.lua
+./modules/misc.lua
+
+slashcommands.lua
